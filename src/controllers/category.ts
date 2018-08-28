@@ -1,4 +1,4 @@
-import { Request, ResponseToolkit, ResponseObject } from 'hapi';
+import { ResponseToolkit, ResponseObject } from 'hapi';
 import BaseController from '../helpers/base-controller';
 import { GET, POST, PATCH, DELETE } from '../decorators/controller';
 import CategoryModel from '../models/category';
@@ -14,7 +14,7 @@ class Category extends BaseController {
     description: 'Get all categories',
     tags: ['api']
   })
-  async getAllCategories(request: Request, h: ResponseToolkit) {
+  async getAllCategories(request: any, h: ResponseToolkit): Promise<ResponseObject> {
     try {
       const categories = await CategoryModel.find();
 
@@ -35,7 +35,7 @@ class Category extends BaseController {
     description: 'Create a category',
     tags: ['api']
   })
-  async createCategory(request: Request, h: ResponseToolkit) {
+  async createCategory(request: any, h: ResponseToolkit): Promise<ResponseObject> {
     try {
       const {
         name
@@ -70,7 +70,7 @@ class Category extends BaseController {
     description: 'Get a category by id',
     tags: ['api']
   })
-  async getCategoryById(request: Request, h: ResponseToolkit) {
+  async getCategoryById(request: any, h: ResponseToolkit): Promise<ResponseObject> {
     try {
       const {
         id
@@ -99,7 +99,7 @@ class Category extends BaseController {
     description: 'Get a category by slug',
     tags: ['api']
   })
-  async getCategoryBySlug(request: Request, h: ResponseToolkit) {
+  async getCategoryBySlug(request: any, h: ResponseToolkit): Promise<ResponseObject> {
     try {
       const {
         slug
@@ -130,7 +130,7 @@ class Category extends BaseController {
     description: 'Get a category by name',
     tags: ['api']
   })
-  async getCategoryByName(request: Request, h: ResponseToolkit) {
+  async getCategoryByName(request: any, h: ResponseToolkit): Promise<ResponseObject> {
     try {
       const {
         name
@@ -163,7 +163,7 @@ class Category extends BaseController {
     description: 'Update a category',
     tags: ['api']
   })
-  async updateCategory(request: Request, h: ResponseToolkit) {
+  async updateCategory(request: any, h: ResponseToolkit): Promise<ResponseObject> {
     try {
       const {
         id
@@ -199,7 +199,7 @@ class Category extends BaseController {
     description: 'Delete a category',
     tags: ['api']
   })
-  async deleteCategory(request: Request, h: ResponseToolkit) {
+  async deleteCategory(request: any, h: ResponseToolkit): Promise<ResponseObject> {
     try {
       const {
         id
@@ -225,3 +225,6 @@ class Category extends BaseController {
     }
   }
 }
+
+
+export default Category;

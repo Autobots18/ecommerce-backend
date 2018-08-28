@@ -36,10 +36,6 @@ class Plugin {
     });
   }
 
-  private async regBoomDecorators(): Promise<Error | any> {
-    await this.register('Boom Decorators', require('hapi-boom-decorators'));
-  }
-
   private async regAuthJwt(): Promise<Error | any> {
     await this.register('JWT Auth', require('hapi-auth-jwt2'));
   }
@@ -87,7 +83,6 @@ class Plugin {
     await this.regGood();
     await this.regStatus();
     await this.regSwagger();
-    await this.regBoomDecorators();
     await this.regAuthJwt();
   }
 }

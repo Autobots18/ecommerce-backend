@@ -20,10 +20,19 @@ const adminSchema = new Schema(
       type: String,
       required: true
     },
+    isVerified: {
+      type: Boolean,
+      required: true
+    },
     password: {
       type: String,
       required: true,
       select: false
+    },
+    role: {
+      type: String,
+      required: true,
+      enum: ['admin', 'super-admin']
     }
   },
   { timestamps: true }

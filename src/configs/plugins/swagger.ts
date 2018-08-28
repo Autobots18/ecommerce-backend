@@ -4,7 +4,6 @@ import IPluginConfig from '../../interfaces/IPluginConfig';
 const config: IPluginConfig = {
   name: 'swagger',
   options: {
-    basePath: '/api/',
     documentationPath: '/docs',
     jsonEditor: true,
     info: {
@@ -14,7 +13,7 @@ const config: IPluginConfig = {
         name: 'Unilag Computer Engineering Class of 2018'
       }
     },
-    grouping: 'tags',
+    pathPrefixSize: 2,
     sortEndpoints: 'ordered'
   }
 };

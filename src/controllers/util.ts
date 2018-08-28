@@ -13,7 +13,7 @@ class Util extends BaseController {
     description: 'Send email',
     tags: ['api']
   })
-  async sendEmail(request: Request, h: ResponseToolkit) {
+  async sendEmail(request: any, h: ResponseToolkit): Promise<ResponseObject> {
     try {
       const {
         email,
@@ -35,3 +35,6 @@ class Util extends BaseController {
     }
   }
 }
+
+
+export default Util;

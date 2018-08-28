@@ -30,14 +30,32 @@ export function create(data: any, expiresIn?: string | number): Promise<string |
   });
 }
 
+export function decode(token: string): Promise<any | Error> {
+  return new Promise((resolve, reject) => {
+    const data: any = jwt.decode(token);
+
+    if (!data || !data.scope) {
+      logger.error('Invalid token', token);
+      return reject(new Error('Invalid token'));
+    }
+
+    return resolve(data);
+  });
+}
+
 export async function validate(decoded: any, request: any): Promise<object> {
   try {
     let person: any = null;
 
-    if (decoded.scope === 'admin') {
-      person = await Admin.findById(decoded.id);
-    } else {
+    if (!decoded.type || decoded.type !== 'account_login' || !decoded.scope) {
+      logger.error('Invalid token', decoded, request.auth.token);
+      throw new Error('Invalid token');
+    }
+
+    if (decoded.scope.includes('user')) {
       person = await User.findById(decoded.id);
+    } else {
+      person = await Admin.findById(decoded.id);
     }
 
     if (!person) {
